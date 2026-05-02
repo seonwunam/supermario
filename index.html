@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Mario 8W">
 <meta name="application-name" content="Super Mario">
-<meta name="theme-color" content="#E52521">
+<meta name="theme-color" content="#DC0032">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="8개 월드를 클리어하고 공주를 구하는 픽셀 아트 플랫폼 게임">
 <meta name="format-detection" content="telephone=no">
@@ -192,6 +192,87 @@
     padding:4px 8px; font-size:12px; cursor:pointer; z-index:200; border-radius:4px;
   }
 
+  /* PERI knowledge quiz overlay */
+  #periQuizOverlay {
+    position:absolute; inset:0; background:rgba(0,0,0,0.92);
+    display:none; align-items:center; justify-content:center;
+    z-index:550; color:#fff; padding:10px;
+  }
+  #periQuizOverlay.show { display:flex; }
+  .peri-box {
+    background:linear-gradient(180deg, #FFFFFF 0%, #E9E9E9 100%);
+    border:4px solid #FFC300; padding:14px 18px; max-width:92vw; max-height:94vh;
+    box-shadow:6px 6px 0 #DC0032; border-radius:6px;
+    color-scheme:light; display:flex; flex-direction:column; gap:8px; overflow:hidden;
+  }
+  .peri-box * { color-scheme:light; }
+  .peri-bracket { display:flex; align-items:center; gap:8px; }
+  .peri-bracket::before {
+    content:''; display:inline-block; width:6px; height:24px; background:#FFC300;
+  }
+  .peri-eyebrow { font-size:10px; color:#7F7F7F !important; -webkit-text-fill-color:#7F7F7F; letter-spacing:2px; font-weight:700; text-transform:uppercase; font-family:'Roboto','Arial',sans-serif; }
+  .peri-title { font-size:16px; color:#333 !important; -webkit-text-fill-color:#333; font-weight:900; font-family:'Univers LT CYR','Arial Black',sans-serif; }
+  .peri-question { font-size:18px; color:#333 !important; -webkit-text-fill-color:#333; font-weight:700; padding:6px 0; line-height:1.3; font-family:'Univers LT CYR','Arial',sans-serif; }
+  .peri-options { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .peri-option {
+    background:#FFFFFF !important; color:#333 !important; -webkit-text-fill-color:#333;
+    border:2px solid #D2D2D2; padding:8px 10px; font-size:13px; font-weight:600;
+    cursor:pointer; text-align:left; border-radius:4px; font-family:'Roboto','Arial',sans-serif;
+    transition:all 0.15s;
+  }
+  .peri-option:hover { border-color:#FFC300; }
+  .peri-option:active { transform:translate(1px,1px); }
+  .peri-option.correct { background:#D4EDDA !important; border-color:#28A745; color:#155724 !important; -webkit-text-fill-color:#155724; }
+  .peri-option.wrong { background:#F8D7DA !important; border-color:#DC0032; color:#721C24 !important; -webkit-text-fill-color:#721C24; }
+  .peri-option .opt-letter { display:inline-block; width:20px; height:20px; line-height:20px; text-align:center;
+    background:#FFC300; color:#000; border-radius:3px; margin-right:6px; font-weight:900; font-family:monospace; }
+  .peri-fact {
+    background:#FFF8DC; border-left:4px solid #FFC300; padding:8px 10px;
+    font-size:11px; color:#444 !important; -webkit-text-fill-color:#444; line-height:1.4;
+    font-family:'Roboto','Arial',sans-serif; display:none;
+  }
+  .peri-fact.show { display:block; }
+  .peri-next-btn {
+    background:#DC0032 !important; color:#FFF !important; -webkit-text-fill-color:#FFF;
+    border:none; padding:10px 20px; font-size:13px; font-weight:900; letter-spacing:2px;
+    cursor:pointer; border-radius:3px; align-self:flex-end; display:none;
+    font-family:'Univers LT CYR','Arial',sans-serif;
+  }
+  .peri-next-btn.show { display:block; }
+  .peri-next-btn:active { transform:translate(1px,1px); }
+
+  /* Fireworks final clear screen */
+  #fireworksCanvas {
+    position:absolute; inset:0; z-index:600; pointer-events:none; display:none;
+  }
+  #fireworksCanvas.show { display:block; }
+  #coffeeMessage {
+    position:absolute; inset:0; z-index:610; display:none;
+    align-items:center; justify-content:center; padding:20px; pointer-events:auto;
+  }
+  #coffeeMessage.show { display:flex; }
+  .coffee-box {
+    background:linear-gradient(180deg, #FFFFFF 0%, #FFF8DC 100%);
+    border:5px solid #FFC300; padding:24px; max-width:520px; text-align:center;
+    box-shadow:8px 8px 0 #DC0032; border-radius:8px; color-scheme:light;
+  }
+  .coffee-box * { color-scheme:light; }
+  .coffee-emoji { font-size:64px; margin-bottom:12px; }
+  .coffee-title { font-size:24px; color:#DC0032 !important; -webkit-text-fill-color:#DC0032; font-weight:900; margin-bottom:10px; letter-spacing:1px; font-family:'Univers LT CYR','Arial Black',sans-serif; }
+  .coffee-text { font-size:14px; color:#333 !important; -webkit-text-fill-color:#333; line-height:1.6; margin-bottom:14px; font-family:'Roboto','Arial',sans-serif; }
+  .coffee-email {
+    background:#FFC300; color:#000 !important; -webkit-text-fill-color:#000;
+    padding:8px 14px; border-radius:4px; font-weight:900;
+    font-family:'Courier New',monospace; font-size:14px; display:inline-block;
+    margin:8px 0;
+  }
+  .coffee-btn {
+    background:#DC0032 !important; color:#FFF !important; -webkit-text-fill-color:#FFF;
+    border:none; padding:10px 24px; font-size:14px; font-weight:900;
+    letter-spacing:2px; cursor:pointer; border-radius:4px; margin-top:10px;
+    font-family:'Univers LT CYR','Arial',sans-serif;
+  }
+
   /* Character selection */
   #characterSelect { background:linear-gradient(180deg, #5C94FC 0%, #3366CC 100%); }
   .char-choices { display:flex; gap:24px; margin:20px 0; flex-wrap:wrap; justify-content:center; }
@@ -219,7 +300,43 @@
 <button id="fullscreenBtn">⛶ FULLSCREEN</button>
 <button id="resetBtn">🔄 캐시초기화</button>
 <button id="soundBtn">🔊</button>
-<div id="diagBar">v1.3.1 | loading…</div>
+<div id="diagBar">v2.1.0 | loading…</div>
+
+<div id="periQuizOverlay">
+  <div class="peri-box">
+    <div class="peri-bracket">
+      <div>
+        <div class="peri-eyebrow">PERI Knowledge Check</div>
+        <div class="peri-title" id="periStageLabel">STAGE 1 / 10</div>
+      </div>
+    </div>
+    <div class="peri-question" id="periQuestion">…</div>
+    <div class="peri-options" id="periOptions"></div>
+    <div class="peri-fact" id="periFact"></div>
+    <button class="peri-next-btn" id="periNextBtn">다음 스테이지 →</button>
+  </div>
+</div>
+
+<canvas id="fireworksCanvas" width="960" height="540"></canvas>
+
+<div id="coffeeMessage">
+  <div class="coffee-box">
+    <div class="coffee-emoji">🎆 ☕ 🎉</div>
+    <div class="coffee-title">CONGRATULATIONS!</div>
+    <div class="coffee-text">
+      10개 스테이지를 모두 클리어하셨습니다!<br>
+      서누·서연과 함께 PERI의 모든 지식을 마스터했습니다.<br><br>
+      <strong>축하 선물 — 커피 한 잔! ☕</strong><br>
+      이 클리어 화면을 스크린샷으로 캡처해서<br>
+      아래 이메일로 보내주시면 커피를 쏘겠습니다 😊
+    </div>
+    <div class="coffee-email">swnam@perikorea.com</div>
+    <div class="coffee-text" style="font-size:11px; margin-top:10px; color:#666 !important; -webkit-text-fill-color:#666;">
+      Final Score: <span id="coffeeScore">0</span> · 캐릭터: <span id="coffeeChar">서누</span>
+    </div>
+    <button class="coffee-btn" id="coffeePlayAgain">다시 플레이하기</button>
+  </div>
+</div>
 
 <div id="quizOverlay">
   <div class="quiz-box">
@@ -353,24 +470,32 @@ function resizeCanvas() {
 }
 window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
-// ---------- PIXEL ART PALETTE ----------
+// ---------- PIXEL ART PALETTE (PERI Design DNA v2) ----------
+// PERI Yellow #FFC300, PERI Red #DC0032, 8-step grey scale
 const PAL = {
   '.': null,
-  'R': '#E52521','r': '#C03020',
-  'B': '#0066CC','b': '#004499',
-  'S': '#FAB47B','s': '#C67444',
-  'H': '#7C3F00',
-  'Y': '#FFD700','y': '#D4A017',
+  'R': '#DC0032','r': '#A8002A',          // PERI Red
+  'B': '#0066CC','b': '#004499',          // overalls blue
+  'S': '#FAB47B','s': '#C67444',          // skin
+  'H': '#7C3F00',                          // hair
+  'Y': '#FFC300','y': '#C89800',          // PERI Yellow
   'W': '#FFFFFF','K': '#000000',
-  'G': '#4CAF50','g': '#2E7D32',
-  'N': '#8B4513','n': '#5D3317',
-  'O': '#FF9800','o': '#C8600D',
-  'P': '#FFC1CC','p': '#D94F7E',
-  'X': '#888888','x': '#555555',
-  'M': '#A0522D','m': '#6B3513',
-  'D': '#D2691E',
-  'E': '#FFE4B5',
-  'F': '#FF69B4',
+  'G': '#4CAF50','g': '#2E7D32',          // green (legacy)
+  'N': '#444444','n': '#222222',          // PERI ground grey
+  'O': '#FFC300','o': '#C89800',          // ? block = PERI Yellow
+  'P': '#FFC1CC','p': '#D94F7E',          // pink (Ditto)
+  'X': '#7F7F7F','x': '#444444',          // grey-60 / grey-90
+  'M': '#A0522D','m': '#6B3513',          // goomba brown (legacy)
+  'D': '#E9E9E9',                          // grey-10 (light bg)
+  'E': '#D2D2D2',                          // grey-20 (rule)
+  'F': '#FF69B4',                          // pink (legacy)
+};
+
+// PERI semantic constants for direct use
+const PERI = {
+  YELLOW: '#FFC300', RED: '#DC0032', WHITE: '#FFFFFF', BLACK: '#000000',
+  INK: '#333333', INK_SOFT: '#7F7F7F', RULE: '#D2D2D2', SOFT_BG: '#E9E9E9',
+  GREY_90: '#444444', GREY_40: '#999999'
 };
 
 // ---------- SPRITES ----------
@@ -604,23 +729,96 @@ const SPR = {
     'OoooooooooooooO.',
     'OOOOOOOOOOOOOOOO',
   ],
+  // PERI letter blocks - yellow background with black PERI letter
+  letterP: [
+    'YYYYYYYYYYYYYYYY',
+    'YyyyyyyyyyyyyyyY',
+    'Yy............yY',
+    'Yy.KKKKKKKK...yY',
+    'Yy.KKKKKKKKK..yY',
+    'Yy.KK....KKK..yY',
+    'Yy.KK.....KK..yY',
+    'Yy.KK....KKK..yY',
+    'Yy.KKKKKKKKK..yY',
+    'Yy.KKKKKKKK...yY',
+    'Yy.KK.........yY',
+    'Yy.KK.........yY',
+    'Yy.KK.........yY',
+    'Yy............yY',
+    'YyyyyyyyyyyyyyyY',
+    'YYYYYYYYYYYYYYYY',
+  ],
+  letterE: [
+    'YYYYYYYYYYYYYYYY',
+    'YyyyyyyyyyyyyyyY',
+    'Yy............yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy.KK.........yY',
+    'Yy.KK.........yY',
+    'Yy.KKKKKKKK...yY',
+    'Yy.KKKKKKKK...yY',
+    'Yy.KK.........yY',
+    'Yy.KK.........yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy............yY',
+    'YyyyyyyyyyyyyyyY',
+    'YYYYYYYYYYYYYYYY',
+  ],
+  letterR: [
+    'YYYYYYYYYYYYYYYY',
+    'YyyyyyyyyyyyyyyY',
+    'Yy............yY',
+    'Yy.KKKKKKKK...yY',
+    'Yy.KKKKKKKKK..yY',
+    'Yy.KK....KKK..yY',
+    'Yy.KK....KKK..yY',
+    'Yy.KKKKKKKKK..yY',
+    'Yy.KKKKKKKK...yY',
+    'Yy.KK..KKK....yY',
+    'Yy.KK...KKK...yY',
+    'Yy.KK....KKK..yY',
+    'Yy.KK.....KKK.yY',
+    'Yy............yY',
+    'YyyyyyyyyyyyyyyY',
+    'YYYYYYYYYYYYYYYY',
+  ],
+  letterI: [
+    'YYYYYYYYYYYYYYYY',
+    'YyyyyyyyyyyyyyyY',
+    'Yy............yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy....KKKK....yY',
+    'Yy....KKKK....yY',
+    'Yy....KKKK....yY',
+    'Yy....KKKK....yY',
+    'Yy....KKKK....yY',
+    'Yy....KKKK....yY',
+    'Yy....KKKK....yY',
+    'Yy.KKKKKKKKKK.yY',
+    'Yy.KKKKKKKKKK.yY',
+    'YyyyyyyyyyyyyyyY',
+    'YYYYYYYYYYYYYYYY',
+  ],
   brick: [
-    'NNNNNNNNNNNNNNNN',
-    'NnnnnNnnnnnnnnnN',
-    'Nnnnn.nnnnnnnnnN',
-    'NNNNNNNNNNNNNNNN',
-    'NnnnnnnnnNnnnnnN',
-    'Nnnnnnnnn.nnnnnN',
-    'NnnnnnnnnNnnnnnN',
-    'NNNNNNNNNNNNNNNN',
-    'NnnnnNnnnnnnnnnN',
-    'Nnnnn.nnnnnnnnnN',
-    'Nnnnn.nnnnnnnnnN',
-    'NNNNNNNNNNNNNNNN',
-    'NnnnnnnnnNnnnnnN',
-    'Nnnnnnnnn.nnnnnN',
-    'NnnnnnnnnNnnnnnN',
-    'NNNNNNNNNNNNNNNN',
+    'RRRRRRRRRRRRRRRR',
+    'RrrrrKrrrrrrrrrR',
+    'RrrrrKrrrrrrrrrR',
+    'RKKKKKKKKKKKKKKR',
+    'RrrrrrrrrKrrrrrR',
+    'RrrrrrrrrKrrrrrR',
+    'RrrrrrrrrKrrrrrR',
+    'RKKKKKKKKKKKKKKR',
+    'RrrrrKrrrrrrrrrR',
+    'RrrrrKrrrrrrrrrR',
+    'RrrrrKrrrrrrrrrR',
+    'RKKKKKKKKKKKKKKR',
+    'RrrrrrrrrKrrrrrR',
+    'RrrrrrrrrKrrrrrR',
+    'RrrrrrrrrKrrrrrR',
+    'RRRRRRRRRRRRRRRR',
   ],
   ground: [
     'NNNNNNNNNNNNNNNN',
@@ -818,6 +1016,8 @@ const STAGES = [
     name:'1-1', theme:'sky', width:180, flagX:170,
     ground:[[0,60,13],[64,100,13],[105,140,13],[143,179,13]],
     tiles:[
+      // PERI letter blocks (P-E-R-I scattered across stage)
+      [38,7,'P'],[39,7,'E'],[40,7,'R'],[41,7,'I'],
       [16,10,'?'], [20,10,'B'], [21,10,'?'], [22,10,'B'], [23,10,'?'], [22,6,'B'],
       [29,12,'c'], [30,12,'c'], [31,12,'c'],
       [34,10,'g'], [40,10,'g'],
@@ -840,6 +1040,7 @@ const STAGES = [
     name:'1-2', theme:'cave', width:190, flagX:180,
     ground:[[0,189,13]],
     tiles:[
+      [60,7,'P'],[61,7,'E'],[62,7,'R'],[63,7,'I'],
       [10,10,'c'],[11,10,'c'],[12,10,'c'],
       [15,9,'B'],[16,9,'?'],[17,9,'B'],[18,9,'?'],[19,9,'B'],
       [25,10,'g'],[28,10,'g'],
@@ -863,6 +1064,7 @@ const STAGES = [
     name:'2-1', theme:'sky', width:200, flagX:190,
     ground:[[0,30,13],[35,70,13],[75,120,13],[125,165,13],[168,199,13]],
     tiles:[
+      [85,6,'P'],[86,6,'E'],[87,6,'R'],[88,6,'I'],
       [10,10,'?'],[11,10,'B'],[12,10,'M'],
       [18,10,'g'],[22,10,'g'],
       [28,11,'c'],[29,11,'c'],
@@ -887,6 +1089,7 @@ const STAGES = [
     name:'2-2', theme:'sky', width:210, flagX:200,
     ground:[[0,15,13],[18,35,13],[40,58,13],[63,85,13],[90,115,13],[120,145,13],[150,175,13],[180,209,13]],
     tiles:[
+      [95,6,'P'],[96,6,'E'],[97,6,'R'],[98,6,'I'],
       [8,10,'?'],[9,10,'B'],[10,10,'M'],
       [20,9,'S'],[21,9,'S'],[22,9,'S'],
       [28,10,'g'],[30,10,'g'],
@@ -912,6 +1115,7 @@ const STAGES = [
     name:'3-1', theme:'night', width:200, flagX:190,
     ground:[[0,50,13],[54,88,13],[92,120,13],[124,160,13],[164,199,13]],
     tiles:[
+      [55,6,'P'],[56,6,'E'],[57,6,'R'],[58,6,'I'],
       [8,10,'?'],
       [15,10,'g'],[17,10,'g'],
       [24,10,'B'],[25,10,'?'],[26,10,'f'],[27,10,'B'],
@@ -934,6 +1138,7 @@ const STAGES = [
     name:'3-2', theme:'castle', width:200, flagX:190,
     ground:[[0,199,13]],
     tiles:[
+      [105,6,'P'],[106,6,'E'],[107,6,'R'],[108,6,'I'],
       [10,10,'k'],[14,10,'g'],[18,10,'g'],
       [22,12,'S'],[22,11,'S'],[22,10,'S'],[22,9,'S'],[22,8,'S'],
       [30,10,'?'],[34,10,'k'],
@@ -958,6 +1163,7 @@ const STAGES = [
     name:'4-1', theme:'sky', width:220, flagX:210,
     ground:[[0,25,13],[28,55,13],[58,90,13],[93,130,13],[133,170,13],[173,219,13]],
     tiles:[
+      [115,6,'P'],[116,6,'E'],[117,6,'R'],[118,6,'I'],
       [8,10,'?'],[9,10,'B'],[10,10,'f'],
       [15,10,'g'],[18,10,'g'],[22,10,'k'],
       [32,10,'k'],[35,10,'g'],[38,10,'g'],
@@ -983,6 +1189,7 @@ const STAGES = [
     name:'4-2', theme:'castle', width:200, flagX:190, bossX:120,
     ground:[[0,199,13]],
     tiles:[
+      [40,6,'P'],[41,6,'E'],[42,6,'R'],[43,6,'I'],
       [8,10,'?'],[9,10,'B'],[10,10,'f'],
       [15,10,'k'],[18,10,'g'],[22,10,'k'],
       [28,12,'S'],[28,11,'S'],[28,10,'S'],[28,9,'S'],[28,8,'S'],
@@ -1001,6 +1208,66 @@ const STAGES = [
       [175,10,'?'],
       [190,4,'|'],[190,5,'|'],[190,6,'|'],[190,7,'|'],[190,8,'|'],[190,9,'|'],[190,10,'|'],[190,11,'|'],[190,12,'|'],
       [190,4,'F'],[196,10,'X']
+    ]
+  }),
+  // -------- WORLD 5-1: PERI Construction Site --------
+  buildStage({
+    name:'5-1', theme:'sky', width:220, flagX:210,
+    ground:[[0,40,13],[44,90,13],[94,140,13],[144,180,13],[184,219,13]],
+    tiles:[
+      // Big PERI logo tower at start
+      [10,4,'P'],[11,4,'E'],[12,4,'R'],[13,4,'I'],
+      [10,5,'B'],[11,5,'B'],[12,5,'B'],[13,5,'B'],
+      [16,10,'?'],[17,10,'B'],[18,10,'?'],[19,10,'M'],[20,10,'B'],
+      [25,10,'g'],[28,10,'g'],[31,10,'k'],
+      [50,10,'?'],
+      [55,8,'S'],[56,8,'S'],[57,8,'S'],[58,8,'S'],
+      [65,10,'k'],[68,10,'g'],[71,10,'g'],[74,10,'k'],
+      [80,9,'B'],[81,9,'?'],[82,9,'f'],[83,9,'B'],
+      // PERI letters mid-stage
+      [98,5,'P'],[99,5,'E'],[100,5,'R'],[101,5,'I'],
+      [105,10,'g'],[108,10,'g'],[111,10,'k'],
+      [120,10,'?'],[125,10,'g'],[128,10,'k'],
+      [148,10,'B'],[149,10,'?'],[150,10,'B'],
+      [155,8,'S'],[156,7,'S'],[157,6,'S'],[158,6,'S'],
+      [165,10,'g'],[170,10,'k'],[175,10,'g'],
+      // PERI near end
+      [190,5,'P'],[191,5,'E'],[192,5,'R'],[193,5,'I'],
+      [195,10,'?'],[200,10,'k'],
+      [210,4,'|'],[210,5,'|'],[210,6,'|'],[210,7,'|'],[210,8,'|'],[210,9,'|'],[210,10,'|'],[210,11,'|'],[210,12,'|'],
+      [210,4,'F'],[216,10,'X']
+    ]
+  }),
+  // -------- WORLD 5-2: PERI HQ FINAL --------
+  buildStage({
+    name:'5-2', theme:'castle', width:220, flagX:210, bossX:140,
+    ground:[[0,219,13]],
+    tiles:[
+      // Welcome to PERI HQ — giant PERI sign
+      [8,4,'P'],[9,4,'E'],[10,4,'R'],[11,4,'I'],
+      [8,5,'B'],[9,5,'B'],[10,5,'B'],[11,5,'B'],
+      [8,6,'B'],[9,6,'B'],[10,6,'B'],[11,6,'B'],
+      [16,10,'?'],[17,10,'B'],[18,10,'f'],[19,10,'B'],[20,10,'?'],
+      [25,10,'k'],[28,10,'g'],[31,10,'g'],[34,10,'k'],
+      [40,12,'S'],[40,11,'S'],[40,10,'S'],[40,9,'S'],[40,8,'S'],[40,7,'S'],
+      [50,10,'?'],[53,10,'g'],[56,10,'k'],[59,10,'g'],
+      [65,9,'B'],[66,9,'?'],[67,9,'M'],[68,9,'B'],
+      [75,12,'S'],[75,11,'S'],[75,10,'S'],[75,9,'S'],
+      [80,10,'k'],[83,10,'k'],[86,10,'g'],[89,10,'g'],[92,10,'g'],
+      // Mid-stage PERI tower
+      [100,4,'P'],[101,4,'E'],[102,4,'R'],[103,4,'I'],
+      [100,5,'B'],[101,5,'B'],[102,5,'B'],[103,5,'B'],
+      [110,10,'?'],[114,10,'k'],[118,10,'g'],[121,10,'g'],
+      [125,10,'?'],[128,10,'B'],[129,10,'?'],[130,10,'f'],[131,10,'B'],
+      [140,10,'z'],  // FINAL BOWSER
+      [155,10,'g'],[158,10,'k'],
+      [165,12,'S'],[165,11,'S'],[165,10,'S'],[165,9,'S'],[165,8,'S'],
+      [175,10,'?'],[180,10,'g'],[185,10,'k'],
+      // Final PERI before flag
+      [195,5,'P'],[196,5,'E'],[197,5,'R'],[198,5,'I'],
+      [195,6,'B'],[196,6,'B'],[197,6,'B'],[198,6,'B'],
+      [210,4,'|'],[210,5,'|'],[210,6,'|'],[210,7,'|'],[210,8,'|'],[210,9,'|'],[210,10,'|'],[210,11,'|'],[210,12,'|'],
+      [210,4,'F'],[216,10,'X']
     ]
   })
 ];
@@ -1309,6 +1576,75 @@ document.getElementById('quizClear').addEventListener('click', () => {
 document.getElementById('quizInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); submitQuiz(); }
 });
+
+// ===== PERI PRODUCT KNOWLEDGE QUIZ (per-stage gateway) =====
+const PERI_QUIZZES = [
+  { // Stage 1
+    q: 'PERI Group은 어느 나라에서 설립되었나요?',
+    options: ['미국', '독일', '일본', '한국'],
+    correct: 1,
+    fact: 'PERI는 1969년 독일 Weissenhorn에서 Artur Schwörer가 설립했습니다.'
+  },
+  { // Stage 2
+    q: 'PERI의 핵심 사업은?',
+    options: ['건축 설계', '거푸집·비계·엔지니어링', '시멘트 제조', '인테리어'],
+    correct: 1,
+    fact: 'PERI = Formwork + Scaffolding + Engineering. 통합 솔루션 공급사입니다.'
+  },
+  { // Stage 3
+    q: 'PERI의 대표적인 벽체 거푸집 제품은?',
+    options: ['ALPHADECK', 'MAXIMO', 'RCS MAX', 'SKYDECK'],
+    correct: 1,
+    fact: 'MAXIMO는 한쪽 타이(MX Tie) 시스템으로 50% 인력절감과 깨끗한 마감을 제공합니다.'
+  },
+  { // Stage 4
+    q: 'ALPHADECK 슬래브 거푸집은 몇 개 부품으로 구성되나요?',
+    options: ['2개', '3개', '5개', '7개'],
+    correct: 1,
+    fact: 'ALPHADECK = 패널 + 드롭헤드 + 프롭, 단 3개 부품으로 50kg 이하·2인 조립이 가능합니다.'
+  },
+  { // Stage 5
+    q: 'RCS MAX 클라이밍 시스템의 핵심 강점은?',
+    options: ['저렴한 가격', '다층 동시 인양·플러그앤플레이', '소형 현장 전용', '수동 조작'],
+    correct: 1,
+    fact: 'RCS MAX는 다층 동시 인양, 무선 리모컨, 자동 안전 기능을 갖춘 PERI의 플래그십입니다.'
+  },
+  { // Stage 6
+    q: 'PERI Korea의 설립 연도는?',
+    options: ['1985년', '1994년', '2001년', '2010년'],
+    correct: 1,
+    fact: 'PERI Korea는 1994년 경기도 화성에 설립, 58,200㎡ 부지에 110명이 근무 중입니다.'
+  },
+  { // Stage 7
+    q: 'PERI의 토목 엔지니어링 키트(교량·터널)는?',
+    options: ['VARIOKIT', 'TRIO', 'DUO', 'PERI UP'],
+    correct: 0,
+    fact: 'VARIOKIT은 교량·터널 등 토목 구조물에 사용되는 엔지니어링 키트입니다 (임대 가능).'
+  },
+  { // Stage 8
+    q: 'PERI 비계(Scaffolding) 시스템의 이름은?',
+    options: ['MAXIMO', 'PERI UP', 'ACS', 'GT24'],
+    correct: 1,
+    fact: 'PERI UP은 Rosett Flex/Easy/MDS K/Access/Industrial 등 다양한 라인업을 갖춘 비계 시스템입니다.'
+  },
+  { // Stage 9
+    q: 'PERI 3D 프린팅(COBOD BOD2)으로 1㎡ 벽을 출력하는 시간은?',
+    options: ['5분', '30분', '2시간', '하루'],
+    correct: 0,
+    fact: 'COBOD BOD2는 1㎡ 벽을 단 5분에 출력, 단독주택은 25시간에 완공할 수 있습니다.'
+  },
+  { // Stage 10 (FINAL)
+    q: 'PERI Group의 비전 슬로건은?',
+    options: [
+      'Build Better Tomorrow',
+      'Making Construction Faster, Safer, More Economical',
+      'Engineering Excellence',
+      'Innovation Forever'
+    ],
+    correct: 1,
+    fact: '"Making Construction Faster, Safer, More Economical" — PERI의 글로벌 미션입니다.'
+  }
+];
 
 // ===== AUDIO SYSTEM =====
 const audio = {
@@ -1751,8 +2087,8 @@ function drawTileChunky(t, px, py) {
       ctx.fillRect(px+4+i*10, py+8+j*8, 4, 4);
     ctx.strokeStyle='#000'; ctx.lineWidth=1; ctx.strokeRect(px, py, TILE, TILE);
   } else if (t==='B') {
-    ctx.fillStyle = '#A0522D'; ctx.fillRect(px, py, TILE, TILE);
-    ctx.strokeStyle = '#5D3317'; ctx.lineWidth=2;
+    ctx.fillStyle = PERI.RED; ctx.fillRect(px, py, TILE, TILE);
+    ctx.strokeStyle = '#000'; ctx.lineWidth=2;
     ctx.beginPath(); ctx.moveTo(px, py+TILE/2); ctx.lineTo(px+TILE, py+TILE/2); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(px+TILE/2, py); ctx.lineTo(px+TILE/2, py+TILE/2); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(px+TILE/4, py+TILE/2); ctx.lineTo(px+TILE/4, py+TILE); ctx.stroke();
@@ -1802,8 +2138,57 @@ function drawTile(t, px, py) {
     else if (t==='X') ok = drawSprite(SPR.castle, px, py, 1.14);
     else if (t==='|') ok = drawSprite(SPR.flagPole, px+TILE/2-3, py, 2);
     else if (t==='F') ok = drawSprite(SPR.flag, px-10, py+4, 2);
+    else if (t==='P') ok = drawSprite(SPR.letterP, px, py, 2);
+    else if (t==='E') ok = drawSprite(SPR.letterE, px, py, 2);
+    else if (t==='R') ok = drawSprite(SPR.letterR, px, py, 2);
+    else if (t==='I') ok = drawSprite(SPR.letterI, px, py, 2);
   } catch(e) { ok = false; }
   if (!ok) drawTileChunky(t, px, py);
+}
+
+// Draws a giant repeating 'PERI' watermark behind the stage, parallax-scrolled.
+function drawPeriWatermark(theme) {
+  // Watermark color & alpha varies by theme so it's visible but subtle
+  let wmFill, wmStroke, wmAlpha;
+  if (theme === 'cave')      { wmFill = '#FFC300'; wmStroke = '#000';    wmAlpha = 0.10; }
+  else if (theme === 'night'){ wmFill = '#FFC300'; wmStroke = '#000';    wmAlpha = 0.13; }
+  else if (theme === 'castle'){ wmFill = '#DC0032'; wmStroke = '#000';   wmAlpha = 0.18; }
+  else                        { wmFill = '#FFFFFF'; wmStroke = '#FFC300'; wmAlpha = 0.32; }
+
+  const text = 'PERI';
+  // Repeat every 480 px in world coords, parallax 0.4
+  const periodX = 480;
+  const parallax = 0.4;
+  const camWX = game.cameraX * parallax;
+  const startWX = Math.floor(camWX / periodX) * periodX - periodX;
+  const endWX = camWX + VIEW_W + periodX;
+
+  ctx.save();
+  ctx.globalAlpha = wmAlpha;
+  ctx.font = '900 110px "Univers LT CYR","Arial Black","Impact",sans-serif';
+  ctx.textBaseline = 'middle';
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = wmStroke;
+  ctx.fillStyle = wmFill;
+
+  // Draw watermarks at varying y heights for visual rhythm
+  const yPositions = [120, 240, 360];
+  let row = Math.floor(startWX / periodX) % yPositions.length;
+  for (let wx = startWX; wx < endWX; wx += periodX) {
+    const screenX = wx - camWX;
+    const y = yPositions[Math.abs(row) % yPositions.length];
+    ctx.strokeText(text, screenX, y);
+    ctx.fillText(text, screenX, y);
+    row++;
+  }
+
+  // PERI L-bracket motif decorations on bottom corners
+  ctx.globalAlpha = wmAlpha * 1.3;
+  ctx.fillStyle = '#FFC300';
+  ctx.fillRect(0, VIEW_H - 100, 6, 60);
+  ctx.fillRect(0, VIEW_H - 100, 60, 6);
+
+  ctx.restore();
 }
 
 function drawBackground() {
@@ -1818,6 +2203,11 @@ function drawBackground() {
   grd.addColorStop(0, skyTop); grd.addColorStop(1, skyBot);
   ctx.fillStyle = grd;
   ctx.fillRect(0,0,VIEW_W,VIEW_H);
+
+  // ===== PERI BACKGROUND WATERMARK (per-stage giant text) =====
+  // Renders large 'PERI' tiles across the level, behind everything else.
+  // Each stage gets watermark color based on theme.
+  drawPeriWatermark(theme);
 
   if (theme==='sky' || theme==='night') {
     const parX = game.cameraX * 0.3;
@@ -2243,14 +2633,159 @@ document.getElementById('retryBtn').addEventListener('click', showCharacterSelec
 document.getElementById('replayBtn').addEventListener('click', showCharacterSelect);
 document.getElementById('nextBtn').addEventListener('click', () => {
   document.getElementById('stageCompleteScreen').classList.add('hidden');
+  // After stage clear, show PERI knowledge quiz before proceeding
+  showPeriQuiz();
+});
+
+// ===== PERI KNOWLEDGE QUIZ =====
+function showPeriQuiz() {
+  game.state = 'periQuiz';
+  const q = PERI_QUIZZES[game.stageIdx] || PERI_QUIZZES[0];
+  document.getElementById('periStageLabel').textContent = `STAGE ${game.stageIdx+1} / ${STAGES.length}`;
+  document.getElementById('periQuestion').textContent = q.q;
+  const optsEl = document.getElementById('periOptions');
+  optsEl.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.options.forEach((opt, i) => {
+    const b = document.createElement('button');
+    b.className = 'peri-option';
+    b.innerHTML = `<span class="opt-letter">${letters[i]}</span>${opt}`;
+    b.addEventListener('click', () => answerPeriQuiz(i, q));
+    optsEl.appendChild(b);
+  });
+  document.getElementById('periFact').classList.remove('show');
+  document.getElementById('periFact').textContent = '';
+  document.getElementById('periNextBtn').classList.remove('show');
+  document.getElementById('periQuizOverlay').classList.add('show');
+}
+
+function answerPeriQuiz(picked, q) {
+  const opts = document.querySelectorAll('.peri-option');
+  opts.forEach((o, i) => {
+    o.disabled = true;
+    if (i === q.correct) o.classList.add('correct');
+    else if (i === picked && i !== q.correct) o.classList.add('wrong');
+  });
+  const factEl = document.getElementById('periFact');
+  factEl.innerHTML = `<strong>${picked === q.correct ? '✓ 정답!' : '✗ 정답은 ' + ['A','B','C','D'][q.correct] + ' 입니다.'}</strong><br>${q.fact}`;
+  factEl.classList.add('show');
+  if (picked === q.correct) {
+    if (audio) audio.sfx.correct();
+    game.score += 1000;
+    document.getElementById('periNextBtn').classList.add('show');
+  } else {
+    if (audio) audio.sfx.wrong();
+    // Allow retry: re-enable options after a brief delay (with new attempt)
+    setTimeout(() => {
+      opts.forEach((o, i) => {
+        if (i !== q.correct) {
+          o.classList.remove('wrong');
+          o.disabled = false;
+        }
+      });
+      factEl.classList.remove('show');
+    }, 1800);
+  }
+}
+
+document.getElementById('periNextBtn').addEventListener('click', () => {
+  document.getElementById('periQuizOverlay').classList.remove('show');
+  // Proceed to next stage or game clear
   if (game.stageIdx >= STAGES.length-1) {
-    gameClear();
+    triggerFinalCelebration();
   } else {
     loadStage(game.stageIdx + 1);
     game.state = 'play';
     if (audio) audio.startBGM();
   }
 });
+
+// ===== FIREWORKS + COFFEE MESSAGE (final stage clear) =====
+function triggerFinalCelebration() {
+  game.state = 'gameClear';
+  startFireworks();
+  if (audio) audio.sfx.victory();
+  // Show coffee message after a couple seconds of fireworks
+  setTimeout(() => {
+    document.getElementById('coffeeScore').textContent = String(game.score).padStart(6,'0');
+    document.getElementById('coffeeChar').textContent = getCharName();
+    document.getElementById('coffeeMessage').classList.add('show');
+  }, 2500);
+}
+
+document.getElementById('coffeePlayAgain').addEventListener('click', () => {
+  stopFireworks();
+  document.getElementById('coffeeMessage').classList.remove('show');
+  showCharacterSelect();
+});
+
+// Fireworks particle system on dedicated canvas
+let fireworksRunning = false;
+let fwCanvas, fwCtx, fwParticles = [], fwTimer = null, fwLaunchTimer = null;
+function startFireworks() {
+  fwCanvas = document.getElementById('fireworksCanvas');
+  fwCanvas.classList.add('show');
+  // Match canvas internal size to display
+  fwCanvas.width = window.innerWidth;
+  fwCanvas.height = window.innerHeight;
+  fwCtx = fwCanvas.getContext('2d');
+  fireworksRunning = true;
+  fwParticles = [];
+  // Continuous launch
+  function launch() {
+    if (!fireworksRunning) return;
+    const cx = Math.random() * fwCanvas.width;
+    const cy = fwCanvas.height * 0.2 + Math.random() * fwCanvas.height * 0.4;
+    const colors = ['#FFC300','#DC0032','#FFFFFF','#FF6347','#00BFFF','#7CFC00','#FF69B4'];
+    const color = colors[Math.floor(Math.random()*colors.length)];
+    const count = 40 + Math.floor(Math.random()*30);
+    for (let i=0; i<count; i++) {
+      const angle = (Math.PI*2*i)/count;
+      const speed = 2 + Math.random()*4;
+      fwParticles.push({
+        x:cx, y:cy,
+        vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed,
+        color, life:60+Math.random()*30
+      });
+    }
+    if (audio) audio.beep(800 + Math.random()*400, 0.15, 'square', 0.05);
+  }
+  fwLaunchTimer = setInterval(launch, 600);
+  launch();
+  function step() {
+    if (!fireworksRunning) return;
+    fwCtx.fillStyle = 'rgba(0,0,0,0.18)';
+    fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
+    for (let i=fwParticles.length-1; i>=0; i--) {
+      const p = fwParticles[i];
+      p.x += p.vx; p.y += p.vy;
+      p.vy += 0.06; p.vx *= 0.99; p.vy *= 0.99;
+      p.life--;
+      const alpha = Math.max(0, Math.min(1, p.life/60));
+      fwCtx.globalAlpha = alpha;
+      fwCtx.fillStyle = p.color;
+      fwCtx.beginPath();
+      fwCtx.arc(p.x, p.y, 3, 0, Math.PI*2);
+      fwCtx.fill();
+      // glow
+      fwCtx.globalAlpha = alpha * 0.4;
+      fwCtx.beginPath();
+      fwCtx.arc(p.x, p.y, 6, 0, Math.PI*2);
+      fwCtx.fill();
+      if (p.life <= 0) fwParticles.splice(i,1);
+    }
+    fwCtx.globalAlpha = 1;
+    if (fireworksRunning) fwTimer = requestAnimationFrame(step);
+  }
+  step();
+}
+
+function stopFireworks() {
+  fireworksRunning = false;
+  if (fwLaunchTimer) clearInterval(fwLaunchTimer);
+  if (fwTimer) cancelAnimationFrame(fwTimer);
+  if (fwCanvas) fwCanvas.classList.remove('show');
+}
 
 })();
 
@@ -2373,7 +2908,7 @@ setInterval(() => {
   const now = performance.now();
   const fps = Math.round(frames * 1000 / (now - lastFpsTime));
   frames = 0; lastFpsTime = now;
-  let msg = `v1.3.1 | FPS:${fps}`;
+  let msg = `v2.1.0 | FPS:${fps}`;
   // (access game state from outer IIFE via a global pointer)
   if (window.__gameDebug) {
     const g = window.__gameDebug;

@@ -2,7 +2,7 @@
    Strategy: NETWORK-FIRST for HTML/JS/CSS (so updates apply immediately)
              CACHE-FIRST for images/icons (so they're fast)
 */
-const CACHE_NAME = 'super-mario-v1.3.1';
+const CACHE_NAME = 'super-mario-v2.1.0';
 const ASSETS = [
   './',
   './index.html',
